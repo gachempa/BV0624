@@ -31,7 +31,10 @@ y=re.match(fr"^{p}$", s3)
 print(5,x)
 print(6,y)
 
+s="aabc"
 p ="a***abc"
 while "**" in p:
     p = re.sub('\*\*', '*', p)
 print("p",p)
+if re.fullmatch(p,s):
+    print(True)
