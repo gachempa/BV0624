@@ -1,37 +1,60 @@
-import re
+#  works but need to spped ip ... another version for that
 
-# txt = "The rain in Spain"
-# x=re.search("rain",txt)
-# print(x)
+nums = [-2,0,0,2,2]
 
-Substring ='string'
- 
- 
-String1 ='''We are learning regex with geeksforgeeks 
-         regex is very useful for string matching.
-          It is fast too.'''
-String2 ='''string We are learning regex with geeksforgeeks 
-         regex is very useful for string matching.
-          It is fast too.'''
- 
-# Use of re.search() Method
-print(1,re.search(Substring, String1, re.IGNORECASE))
-# Use of re.match() Method
-print(2,re.match(Substring, String1, re.IGNORECASE))
- 
-# Use of re.search() Method
-print(3,re.search(Substring, String2, re.IGNORECASE))
-# Use of re.match() Method
-print(4,re.match(Substring, String2, re.IGNORECASE))
+ans_list=[]
+add_flag=0
+nums_freq={}
+for n in nums:
+    if n in nums_freq:
+        nums_freq[n]+=1
+    else:
+        nums_freq[n]=1
+# print(nums_freq)
 
-s3="abcbd"
-p="a[bcd]*b"
-x=re.match(p,s3)
-y=re.match(fr"^{p}$", s3)
-print(5,x)
-print(6,y)
+if 0 in nums_freq and nums_freq[0]>=3:
+    ans_list.append([0,0,0])
 
-p ="a***abc"
-while "**" in p:
-    p = re.sub('\*\*', '*', p)
-print("p",p)
+for i in range(len(nums)-2):
+    x=nums[i]
+    sum=0-x
+    # print("sum",sum)
+    for j in range(i+1,len(nums)-1):
+        jsum=sum-nums[j]
+        if jsum in nums_freq:
+                     
+            if (jsum==nums[j] and jsum==nums[i]):
+                if nums_freq[jsum]>2: add_flag=1
+
+            elif (jsum==nums[j] or jsum==nums[i]):
+                  if nums_freq[jsum]>1: add_flag=1
+
+            elif (jsum!=nums[j] and jsum!=nums[i]):
+                add_flag=1
+            
+            if add_flag==1:
+                a=sorted([nums[i],nums[j],jsum])
+                if a not in ans_list: ans_list.append(a)
+                add_flag=0
+
+            print("i, j, jsum:",i,j,nums[i],nums[j], jsum)
+            print("a",a)
+            
+            # or \
+            #     ((jsum==nums[j] or jsum==nums[i]) and nums_freq[jsum]>1) or \
+            #         (jsum!=nums[j] and jsum!=nums[i]):
+            #     a=sorted([nums[i],nums[j],jsum])
+            #     if a not in ans_list:
+            #         ans_list.append(a)
+            #         print("i, j, jsum:",i,j,nums[i],nums[j], jsum)
+            #         print("a",a)
+
+            # elif jsum!=nums[j] and jsum!=nums[i]:
+            #     a=sorted([nums[i],nums[j],jsum])
+            #     if a not in ans_list:
+            #         ans_list.append(a)
+                # print("a",a)
+        # print("jsum",jsum)
+    # print(sum)
+
+print(ans_list)
