@@ -69,3 +69,53 @@ return kloop(a0,a,b,c,z,head,cycle)
             if x==0 and y==k:
                 x=k
                 y=0
+
+# another try
+
+        if k==1: return head
+        if not head: return head
+
+        a=b=c=e=head
+        n=1
+        while a.next:
+            n+=1
+            a=a.next
+        a=b
+        if n<k: return head
+
+        q,r=divmod(n,k)
+        # print(q)
+        for i in range(q):
+            e=b=a
+            b=a.next
+            
+            if i==0:
+                for _ in range(k-1):
+                    head=head.next                
+                # return head
+            if i==q-1:
+                for _ in range(k):
+                    e=e.next 
+            else:
+                for _ in range(2*k-1):
+                    e=e.next
+            print(e)
+            return head
+            for j in range(k-1):
+                if j==0:
+                    a.next=e
+                c=b.next
+                b.next=a
+                
+                if j==k-2:
+                    a=a.next.next
+                    if a: b=a.next
+                else:
+                    a=b
+                    b=a.next
+                # return b
+                
+                    # print("j",j)
+                    # return b            
+
+        return head
