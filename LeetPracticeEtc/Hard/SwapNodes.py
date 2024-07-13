@@ -1,5 +1,7 @@
 # https://leetcode.com/problems/swapping-nodes-in-a-linked-list/
 
+# v messy solution ... don't like it 
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -7,8 +9,16 @@
 #         self.next = next
 class Solution:
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        if k==1: return head
-        
+        if head.next==None: return head
+
+        if head.next and head.next.next==None:
+            a=head
+            b=head.next
+            head=b
+            head.next=a
+            a.next=None
+            return head
+
         bprev=eprev=e=head
         eptr=1
 
@@ -21,28 +31,23 @@ class Solution:
                 eprevk1=e #eprev to use for k=1
             e=e.next
             eptr+=1
-        
-        if eptr==2:
-            a=head
-            b=head.next
-            head=b
-            head.next=a
-            a.next=None
-            return head
-
-        if k==1:
+        # print(eptr)
+        if k==1 or k==eptr-1:
             last = eprevk1.next
             h=head
+            b2=head.next
             head=last
-            b2=head.next #2nd node
-            last.next=b2h.next=None
+            head.next=b2
             eprevk1.next=h
+            h.next=None
             return head
         else:            
             e2=eprev.next.next
             e=eprev.next
             b2=bprev.next.next
             b=bprev.next
+            # if the nodes to swap are adjacent to each other
+            # below code can be compressed ... but works
             if e.next==b:
                 t=b.next
                 b.next=e
