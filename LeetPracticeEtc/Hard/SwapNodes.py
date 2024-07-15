@@ -1,6 +1,7 @@
 # https://leetcode.com/problems/swapping-nodes-in-a-linked-list/
 
-# v messy solution ... don't like it 
+# did swapping nodes, not just values 
+# messy solution ... don't like it  
 
 # Definition for singly-linked list.
 # class ListNode:
