@@ -1,31 +1,42 @@
 n = 4
 
 idx=["0","1","2","3","4","5","6","7","8"]
-choices=[]
-blocked=[]
-ans=[]
+choices, blocked = [], set()
+ans, sol = [], []
+Qs = n
+count=0
 
 for i in range(n):
     for j in range(n):
         choices.append(idx[i]+idx[j])
+# print(choices)
 
-print(choices)
+def soln(Qs,blocked):
+    global count
 
+    # print("Qs count blocked" ,Qs, count, blocked)
+    if Qs==0:
+        sol.sort()
+        if sol not in ans:
+            ans.append(sol[:])
+        return
 
-
-
-def soln(choices=choices,blocked=blocked,q=0,Qs=[]):
-    if q==n:
-        return ans
-    if len(blocked)==len(choices):
-        return False
     for ch in choices:
-        if ch in blocked and ch==choices[-1]: return False
-        if ch not in blocked:
-            Qs.append(ch)
-            blocked = blocked | horz(ch[0],ch[1]) | vert(ch[0],ch[1]) | diag(ch[0],ch[1])
-            if soln(choices):return True        
-            else: board[i][j]="."
+        if Qs+int(ch[0])>n:
+            return ans
+        if ch not in blocked and ch not in sol: 
+            count+=1
+            sol.append(ch)
+            # print("ch sol:",ch, sol)
+            ch_blocks=set(q_block(int(ch[0]),int(ch[1])))
+            soln(Qs-1,blocked | ch_blocks)     
+            sol.pop()
+        
+
+def q_block(r=0,c=0):
+    gq_bloc=set()
+    gq_bloc= horz(r,c) | vert(r,c) | diag(r,c)
+    return gq_bloc
 
 def horz(r=0,c=0):
     ghorz=set()
@@ -65,6 +76,28 @@ def diag(r=0,c=0):
     r,c=r1,c1
     return gdiag
 
-print(horz(2,1))
-print(vert(2,1))
-print(diag(2,1))
+
+soln(Qs,blocked)
+print(ans)
+s_ans=[]
+
+for i in range(len(ans)):
+    l=[]
+    s=""
+    s_ans.append(l)
+    for j in range(n):
+        for _ in range(n):
+            if _ == int((ans[i][j])[1]):
+                s=s+"Q"
+            else:
+                s=s+"."
+        l.append(s)
+        s=""
+        # print(l)
+print(s_ans)
+
+# testr, testc = 0, 0
+# print(horz(testr,testc))
+# print(vert(testr,testc))
+# print(diag(testr,testc))
+# print(q_block(testr,testc))
