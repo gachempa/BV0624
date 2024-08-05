@@ -19,6 +19,7 @@ class Trie:
             if c not in d:
                 return False
             d = d[c]
+            # print(d[c])
         return '.' in d
 
     def startsWith(self, prefix: str) -> bool:
@@ -37,9 +38,11 @@ trie = Trie()
 
 trie.insert("apple")
 a = trie.search("apple")   # returns true
-b = trie.search("app")     #// returns false
-c = trie.startsWith("app") #// returns true
-trie.insert("app")
-d = trie.search("app")     #// returns true
+# b = trie.search("app")     #// returns false
+# c = trie.startsWith("app") #// returns true
+# trie.insert("app")
+# d = trie.search("app")     #// returns true
 
-print(a, b, c, d)
+# print(a, b, c, d)
+
+print(a)
