@@ -11,6 +11,7 @@ class Trie:
             d = d[c]
         
         d["."] = "."
+        print(d)
 
     def search(self, word: str) -> bool:
         d = self.trie
@@ -26,23 +27,20 @@ class Trie:
         d = self.trie
 
         for c in prefix:
-            d = self.trie
-
-            for c in prefix:
-                if c not in d:
-                    return False
-                d = d[c]
-            return True
+            if c not in d:
+                return False
+            d = d[c]
+        return True
 
 trie = Trie()
 
 trie.insert("apple")
 a = trie.search("apple")   # returns true
 # b = trie.search("app")     #// returns false
-# c = trie.startsWith("app") #// returns true
+c = trie.startsWith("app") #// returns true
 # trie.insert("app")
 # d = trie.search("app")     #// returns true
 
 # print(a, b, c, d)
 
-print(a)
+print(a,c)
