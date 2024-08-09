@@ -1,14 +1,17 @@
 #  test
 
-board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
-word = "ABCCED"
+visited = [False] * 4
+print(visited)
 
-pos=[0,0]
-for off in [[0,1],[0,-1],[-1,0],[1,0]]:
-    r=pos[0]+off[0]
-    c=pos[1]+off[1]
-    if r>=0 and c>=0:
-        pass
+# board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+# word = "ABCCED"
+
+# pos=[0,0]
+# for off in [[0,1],[0,-1],[-1,0],[1,0]]:
+#     r=pos[0]+off[0]
+#     c=pos[1]+off[1]
+#     if r>=0 and c>=0:
+#         pass
 
 # n=4
 # l = [[1, 3, 0, 2], [2, 0, 3, 1]]
