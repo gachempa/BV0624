@@ -29,8 +29,8 @@ arr = ['and','ant','do','geek','dad','ball']
 for s in arr:
     insert_key(root, s)
 
-searchKey = ["do","gee","bat"]
-for s in searchKey:
+searchKeys = ["do","gee","bat"]
+for s in searchKeys:
     print(f"Key : {s}")
     if searchKey(root, s):
         print("Present")
