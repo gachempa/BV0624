@@ -17,3 +17,10 @@ class Trie:
             currnode = currnode.children[char]
         currnode.is_word_end = True
 
+board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
+words = ["oath","pea","eat","rain"]
+
+trie_ = Trie()
+for word in words:
+    trie_.insert(word)
+
