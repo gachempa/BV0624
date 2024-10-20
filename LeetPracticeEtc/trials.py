@@ -1,7 +1,13 @@
 #  test
 
-visited = [False] * 4
-print(visited)
+valueDiff=3
+visited = {0: 1, 3:10}
+def dicReturn(x,y):
+    if y-1 in visited and visited[y-1]-x <= valueDiff:
+        return True
+    if y+1 in visited and visited[y+1]-x <= valueDiff:
+        return True
+print(dicReturn(8,2))
 
 # board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
 # word = "ABCCED"
