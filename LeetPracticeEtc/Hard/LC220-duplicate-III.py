@@ -21,8 +21,9 @@ for i,num in enumerate(nums):
     if k-1 in dict_D and abs(dict_D[k-1][0]-i)<=indexDiff and abs(dict_D[k-1][1]-num)<=valueDiff:
         print("True")
         break
+    # if i+1==indexDiff:
+    #     print("len of dict = ",len(dict_D))
+    #     del dict_D[nums[i-indexDiff]]
     dict_D[k]=[i,num]
-    # if(len(dict_D)>indexDiff):
-    #     del dict_D[i-indexDiff]
 print("False")
 print(dict_D)
